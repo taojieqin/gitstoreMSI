@@ -1,0 +1,1 @@
+gcc dm_fork.c -o main
