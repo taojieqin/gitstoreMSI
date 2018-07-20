@@ -1,0 +1,15 @@
+cc=gcc
+taget=client
+obj=selectclient2.o commsocket.o
+deps=commsocket.h
+
+
+$(taget):$(obj)
+	$(cc) -o $(taget) $(obj)
+
+%.o:%.c $(deps)
+	$(cc) -o $< -o $@
+
+clean:
+	rm -rf $(obj) $(taget)
+

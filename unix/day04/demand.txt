@@ -1,0 +1,32 @@
+
+shell demand of share exchange data 
+
+1 list 29/05/2014 shanghai data in .txt file
+	grep "2014-05-29" gp.txt
+
+2 list 05/2014 shanghai data in .txt file
+	grep "2014-05-*" gp.txt
+
+3 list 05/2014 increasing data of shanghai share exchange in .txt file
+	grep "2014-05-*" gp.data | awk '{ if $7 > 0 print $1, "\t", $7 }'
+	grep "2014-05-*" gp.data | awk '{ if $7 > 0 print $0 }' //print all lines
+
+4 list 02/2014 increasing data of shanghai share exchange in .txt file
+	grep "2014-02-*" gp.data | awk '{ if $7 > 0 print $0 }' //print all lines
+
+5 list 05/2014 one day with greatest increasing rate in .txt file
+	grep "2014-05-*" gp.data | sort -n -k7 | tail -1   // default decrease
+	grep "2014-05-*" gp.data | sort -n -rk7 | head -1
+ 
+6 list 02/2014 time and rate of increasing data
+	grep "2014-02" gp.data | awk '{if $7 >0 print $1, "\t", $7}'
+
+7 list 02/2014 time and rate (top 5 - 10) of increasing data
+	grep "2014-02-*" gp.data | awk '{ $7 >0 }' | sed -n "5, 10p"
+
+8 list 02/2014 with rate 1 - 2 data in .txt file
+	grep "2014-02-*" gp.data | awk '{ if ($7 > 1 && $7 < 2 ) print $0 }'
+
+9 find *.sh file in $HOME/myshell, output keyword file name and number of 'case' in *.sh
+	find ./HOME/myshell "*.sh" | xargs grep -n "case" 
+
